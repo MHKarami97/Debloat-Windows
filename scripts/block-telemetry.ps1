@@ -1,12 +1,6 @@
 #   Description:
 # This script blocks telemetry related domains via the hosts file and related
 # IPs via Windows Firewall.
-#
-# Please note that adding these domains may break certain software like iTunes
-# or Skype. As this issue is location dependent for some domains, they are not
-# commented by default. The domains known to cause issues marked accordingly.
-# Please see the related issue:
-# <https://github.com/W4RH4WK/Debloat-Windows-10/issues/79>
 
 Import-Module -DisableNameChecking $PSScriptRoot\..\lib\New-FolderForced.psm1
 
@@ -187,14 +181,6 @@ $domains = @(
     "watson.telemetry.microsoft.com.nsatc.net"
     "wes.df.telemetry.microsoft.com"
     "m.hotmail.com"
-
-    # can cause issues with Skype (#79) or other services (#171)
-    "apps.skype.com"
-    "c.msn.com"
-    # "login.live.com"                  # prevents login to outlook and other live apps
-    "pricelist.skype.com"
-    "s.gateway.messenger.live.com"
-    "ui.skype.com"
 )
 Write-Output "" | Out-File -Encoding ASCII -Append $hosts_file
 foreach ($domain in $domains) {
@@ -215,7 +201,7 @@ $ips = @(
     "204.79.197.200"
     "23.218.212.69"
     "65.39.117.230"
-    "65.52.108.33"   # Causes problems with Microsoft Store
+    #"65.52.108.33"   # Causes problems with Microsoft Store
     "65.55.108.23"
     "64.4.54.254"
 
